@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!--button even listener-->
+    <button id="myButton">Click Me</button>
+
+<script>
+document.getElementById("myButton").addEventListener("click", function() {
+  alert("Button was clicked!");
+});
+</script>
+<!--hoover effects-->
+<br><br><br><br>
+<div id="hoverDiv" style="width: 100px; height: 100px; background-color: red;"></div>
+
+<script>
+document.getElementById("hoverDiv").addEventListener("mouseover", function() {
+  this.style.backgroundColor = "blue"; // Change color on hover
+});
+document.getElementById("hoverDiv").addEventListener("mouseout", function() {
+  this.style.backgroundColor = "red"; // Reset color on mouseout
+});
+</script>
+<!--doubleclick or longpress-->
+<br><br>
+<button id="secretButton">Double Click Me</button>
+
+<script>
+let timeout;
+document.getElementById("secretButton").addEventListener("dblclick", function() {
+  alert("Double-click detected! Here's your secret action.");
+});
+
+document.getElementById("secretButton").addEventListener("mousedown", function() {
+  timeout = setTimeout(function() {
+    alert("Long press detected!");
+  }, 1000); // Long press for 1 second
+});
+
+document.getElementById("secretButton").addEventListener("mouseup", function() {
+  clearTimeout(timeout); // Clear the timeout if the press was short
+});
+</script>
+<!--change button text-->
+<button id="changeButton">Click Me to Change</button>
+
+<script>
+document.getElementById("changeButton").addEventListener("click", function() {
+  this.textContent = "You Clicked Me!";
+  this.style.backgroundColor = "green"; // Change color
+});
+</script>
+<!--image gallery-->
+<br><br>
+<div id="gallery">
+    <img src="cetrad use of GIS nanyuki.jpg" alt="Image 1" class="galleryImage" width="96px">
+    <img src="erosio.jpg" alt="Image 2" class="galleryImage" style="display: none;" width="96px">
+    <img src="laikipia- mpala wildlife institute.jpg" alt="Image 3" class="galleryImage" style="display: none;" width="96px">
+  </div>
+  
+  <script>
+  let currentIndex = 0;
+  const images = document.querySelectorAll(".galleryImage");
+  
+  function showNextImage() {
+    images[currentIndex].style.display = "none";
+    currentIndex = (currentIndex + 1) % images.length;
+    images[currentIndex].style.display = "block";
+  }
+  
+  setInterval(showNextImage, 3000); // Change image every 3 seconds
+  </script>
+  <!--tabs-->
+  <br><br><br>
+  <div class="tabs">
+    <button class="tabButton" onclick="showTab(0)">Tab 1</button>
+    <button class="tabButton" onclick="showTab(1)">Tab 2</button>
+    <button class="tabButton" onclick="showTab(2)">Tab 3</button>
+  </div>
+  
+  <div class="tabContent" id="tab1">Content for Tab 1</div>
+  <div class="tabContent" id="tab2" style="display: none;">Content for Tab 2</div>
+  <div class="tabContent" id="tab3" style="display: none;">Content for Tab 3</div>
+  
+  <script>
+  function showTab(index) {
+    const contents = document.querySelectorAll(".tabContent");
+    contents.forEach((content, i) => {
+      content.style.display = i === index ? "block" : "none";
+    });
+  }
+  </script>
+  <!--form validation-->
+  <form onsubmit="return validateForm()">
+    <input type="text" id="username" required />
+    <button type="submit">Submit</button>
+  </form>
+  
+  <script>
+  function validateForm() {
+    const username = document.getElementById("username").value;
+    if (username === "") {
+      alert("Please fill out the required field.");
+      return false; // Prevent form submission
+    }
+    return true;
+  }
+  </script>
+  <!--email format-->
+  <br><br>
+  <form onsubmit="return validateEmail()">
+    <input type="email" id="email" placeholder="Enter email" required />
+    <button type="submit">Submit</button>
+  </form>
+  
+  <script>
+  function validateEmail() {
+    const email = document.getElementById("email").value;
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!regex.test(email)) {
+      alert("Please enter a valid email address.");
+      return false;
+    }
+    return true;
+  }
+  </script>
+  <!--real-time fedback-->
+  <br><br>
+  <input type="text" id="name" placeholder="Enter your name" />
+<p id="feedback"></p>
+
+<script>
+document.getElementById("name").addEventListener("input", function() {
+  const feedback = document.getElementById("feedback");
+  if (this.value.length < 5) {
+    feedback.textContent = "Name is too short!";
+    feedback.style.color = "red";
+  } else {
+    feedback.textContent = "Name looks good!";
+    feedback.style.color = "green";
+  }
+});
+</script>
+
+
+</body>
+</html>
